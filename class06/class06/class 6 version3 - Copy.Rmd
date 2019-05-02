@@ -2,7 +2,7 @@
 title: "class6 version3 r functions"
 author: "Robertha Amezola"
 date: "April 18, 2019"
-output: html_document
+output: github_document 
 ---
 
 ```{r setup, include=FALSE}
