@@ -1,0 +1,39 @@
+---
+title: "class6 version3 r functions"
+author: "Robertha Amezola"
+date: "April 18, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# About
+this is my **class 6** r markdown doc with my *code* and notes for the day.
+
+```{r}
+plot(1:10, typ="l", col="blue")
+
+
+```
+
+
+
+## reading in files practice
+
+There are 3 files to read.
+```{r}
+read.table("test1.txt", header=TRUE, sep=",")
+
+
+```
+
+```{r}
+read.table("test2.txt", header=TRUE, sep=",")
+```
+
+```{r}
+read.table("test3.txt", header=TRUE, sep=",")
+```
+
