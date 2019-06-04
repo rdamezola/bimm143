@@ -1,0 +1,169 @@
+---
+title: "Untitled"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#PDB databse 
+
+#Q1
+```{r}
+db <-read.csv("Data Export Summary.csv", row.names=1)
+head(db)
+```
+
+#Q2
+
+
+```{r}
+(db$Total/sum(db$Total))*100
+```
+
+#Q3 How many are proteins
+
+```{r}
+(sum(db$Proteins)/sum(db$Total))*100
+```
+
+#Q4 1-HIV protoase
+
+There are 1157 as of 2019-05-07
+
+
+```{r}
+
+```
+
+```{r}
+library(datapasta)
+data.frame(stringsAsFactors=FALSE,
+          V1 = c("X-Ray", "NMR", "Electron Microscopy", "Other",
+                 "Multi Method", "Total"),
+          V2 = c(126880, 11062, 2277, 256, 129, 140604),
+          V3 = c(2012, 1279, 31, 4, 5, 3331),
+          V4 = c(6547, 259, 800, 6, 2, 7614),
+          V5 = c(8, 8, 0, 13, 1, 30),
+          V6 = c(135447, 12608, 3108, 279, 137, 151579)
+)
+
+```
+ 
+ 
+ Section #3
+ 
+
+```{r}
+library(bio3d)
+
+pdb<- read.pdb("1hsg.pdb")
+pdb
+```
+
+
+```{r}
+attributes(pdb)
+```
+
+
+
+```{r}
+head(pdb$atom)
+```
+
+
+```{r}
+head(pdb$atom)[1:2, c("eleno", "elety", "x","y", "z")]
+```
+
+
+```{r}
+pdb$atom$elety[1:2]
+```
+
+
+```{r}
+plot.bio3d(pdb$atom$b[pdb$calpha], sse=pdb, typ="l", ylab=“B-factor”)
+```
+
+```{r}
+pdb$xyz
+```
+atom.select (pdb, "protein", value =TRUE)
+
+
+```{r}
+atom.select (pdb, "protein", value =TRUE)
+```
+
+
+```{r}
+pdb$atom$resid
+```
+
+Atom select  **atom.select()** 
+
+#Q6
+```{r}
+prot.pdb <- atom.select(pdb, "protein", value=TRUE)
+write.pdb(prot.pdb, file="1hsg_protein.pdb")
+```
+
+```{r}
+lig.pdb <- atom.select(pdb, "ligand", value=TRUE)
+write.pdb(lig.pdb, file="1hsg_ligand.pdb")
+```
+
+Section 5 search retrieve adenylate kinase structures 
+```{r}
+aa <- get.seq("1ake_A")
+```
+
+
+#Blats or hmmer search
+
+```{r}
+b<-blast.pdb(aa)
+```
+
+#Plot a summary of search results
+
+
+```{r}
+hits<-plot(b)
+```
+```{r}
+head(hits$pdb.id)
+```
+
+
+```{r}
+files <- get.pdb(hits$pdb.id, path="pdbs", split=TRUE, gzip=TRUE)
+```
+
+```{r}
+pdbs <- pdbaln(files)
+```
+
+```{r}
+ids <- basename.pdb(pdbs$id)
+```
+
+```{r}
+plot(pdbs, labels=ids)
+```
+
+```{r}
+cons <- conserv(pdbs, method="entropy22")
+```
+
+
+```{r}
+sse <- pdbs2sse(pdbs, ind=1, rm.gaps=FALSE)
+```
+```{r}
+plotb3(cons, sse=sse, ylab="Sequence entropy")
+```
+

@@ -1,0 +1,92 @@
+---
+title: "class_13_hands_on"
+author: "Robertha Amezola"
+date: "May 14, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+genotypes in MXL 1000 Genome Project Data
+
+Focused on MXN ancestry in LA,CA
+
+what portion of MXN ancestry 
+mxl<- read.csv
+head(mxl)
+
+table(mxl$genotype..forward.strand.)
+
+calculate as a %
+
+(table(mxl$genotype..forward.strand.)/nrow(mxl)*100)
+
+
+look at an individual
+install.packages("seqinr")
+"gtools"
+
+Quiality scores in FASTQ files
+library(sq)
+library(gtools)
+s2c("DDDDDDCDDDBDDC@")
+asc(s2c(____))-33
+
+
+read RNA-Seq data with genotype information results table
+
+
+```{r}
+expr <- read.table("rs8067378_ENSG00000172057.6.txt")
+
+head(expr)
+
+```
+
+
+
+```{r}
+summary(expr)
+```
+
+onyl G/G 
+
+
+```{r}
+inds <- expr$geno== "G/G"
+expr[inds,]
+```
+
+
+
+
+```{r}
+inds <- expr$geno== "G/G"
+summary(expr[inds, "exp"])
+```
+
+```{r}
+inds <- expr$geno== "A/G"
+summary(expr[inds, "exp"])
+```
+
+```{r}
+inds <- expr$geno== "A/A"
+summary(expr[inds, "exp"])
+```
+
+
+
+
+```{r}
+boxplot(exp~geno, data=expr)
+```
+
+
+
+
+#significant differnces  does affect expression values 

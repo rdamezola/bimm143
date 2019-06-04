@@ -1,0 +1,35 @@
+---
+title: "class_18"
+author: "Robertha Amezola"
+date: "May 30, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+#install packages
+
+
+Load packages
+
+```{r eval=FALSE}
+BiocManager::install(c("GenomicDataCommons", "TCGAbiolinks", "maftools"))
+```
+
+```{r}
+library(GenomicDataCommons)
+library(TCGAbiolinks)
+library(maftools)
+```
+
+
+
+
+```{r}
+GenomicDataCommons::status()
+```
+

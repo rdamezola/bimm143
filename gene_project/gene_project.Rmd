@@ -1,0 +1,120 @@
+---
+title: "gene_project"
+author: "Robertha Amezola"
+date: "May 25, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+library(bio3d)
+```
+ 
+```{r}
+genes.data =  "genes_fasta.txt"
+```
+ 
+```{r}
+print(genes.data)
+```
+ 
+```{r}
+genes.fasta= read.fasta(genes.data, rm.dup = TRUE, to.upper = FALSE, to.dash=TRUE)
+```
+
+#distance
+```{r}
+print(genes.fasta)
+```
+ 
+ 
+```{r}
+attributes(genes.fasta)
+```
+ 
+```{r}
+
+ide.mat <- seqidentity(genes.fasta)
+```
+ 
+#Sequence identity
+ 
+
+ 
+```{r}
+heatmap(ide.mat)
+```
+
+```{r}
+con =consensus(ide.mat)
+```
+ 
+ 
+```{r}
+print(con$seq)
+```
+ 
+ 
+```{r}
+blast.pdb(genes.fasta)
+```
+ 
+
+```{r}
+ids= c("1KT3_A", "1IIU_A", "1AQB_A")
+anno= pdb.annotate(ids)
+```
+ #"1JYD_A""409S_A"
+ 
+ 
+```{r}
+anno$source
+```
+ 
+```{r}
+anno$identity
+
+```
+ 
+ 
+```{r}
+anno$resolution
+```
+ 
+```{r}
+anno$experimentalTechnique
+```
+ 
+ 
+```{r}
+anno$structureId
+```
+ 
+ 
+```{r}
+anno= pdb.annotate(ids, unique=TRUE)
+```
+ 
+Q9
+VMD
+```{r}
+library(bio3d)
+library(igraph)
+```
+
+```{r}
+get.pdb("1KT3_A")
+```
+ 
+```{r}
+get.pdb("5NU9")
+```
+ 
+
+ 
+ 

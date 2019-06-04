@@ -1,0 +1,58 @@
+---
+title: "Untitled"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+##class 12 hands on
+
+##set up docking
+prepare our HIV-Pr system for drug docking by making a PDB format file ( remove water,exiting ligand, ect)
+
+```{r}
+library(bio3d)
+file<-get.pdb("1hsg")
+```
+
+```{r}
+pdb <- read.pdb(file)
+pdb
+```
+
+
+#Q1
+```{r}
+prot <-atom.select(pdb, "protein", value=TRUE)
+write.pdb(prot, file="1hsg_protein.pdb")
+prot
+```
+
+```{r}
+lig <-atom.select(pdb, "ligand", value=TRUE)
+write.pdb(lig, file="1hsg_ligand.pdb")
+lig
+```
+
+> "\Program Files (x86)\The Scripps Research Institute\Vina\vina.exe" --config config.txt --log log.txt
+
+```{r}
+library(bio3d)
+res <- read.pdb("all.pdbqt", multi=TRUE)
+write.pdb(res, "results.pdb")
+```
+
+
+```{r}
+ res <- read.pdb("all.pdbqt", multi=TRUE)
+ori <- read.pdb("ligand.pdbqt")
+rmsd(ori, res)
+```
+
+```{r}
+pdb <- read.pdb("1hel")
+modes <- nma( pdb )
+m7 <- mktrj(modes, mode=7, file="mode_7.pdb")vm
+```
+
