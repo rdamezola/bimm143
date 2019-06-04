@@ -1,0 +1,279 @@
+---
+title: "class07_423"
+author: "Robertha Amezola"
+date: "April 23, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Functions revisted
+we will use a file from last class
+```{r}
+source("http://tinyurl.com/rescale-R")
+```
+
+Try out the last day's resclae() function
+
+```{r}
+rescale(1:10)
+```
+
+
+Try the rescale2() function that catches string inputs- should get error
+
+##```{r}
+rescale(c(1:10, "string"))
+```
+
+##```{r}
+rescale2(c(1:10, "string"))
+```
+should get error mistake
+
+#Find missing NA 
+
+```{r}
+x <- c( 1, 2, NA, 3, NA)
+y <- c(NA, 3, NA, 3, 4)
+```
+
+
+```{r}
+is.na(x)
+```
+
+# telling me where there is NA in x
+
+```{r}
+is.na(y)
+```
+# TRUE where y is [NA]
+
+
+#now got answer for each vector
+#combining together with an AND
+
+```{r}
+is.na(x) & is.na(y)
+```
+#TRUE is the position NA for both vectors x and y
+
+
+#how many TRUE in both (NA values) in x & y ? use the sum() function
+
+
+```{r}
+sum(is.na(x) & is.na(y))
+```
+
+#answer is 1
+
+#Write this as a function
+#body is the snippet
+
+```{r}
+both_na <- function(x,y) {
+ sum(is.na(x) & is.na(y))  
+}
+```
+
+
+```{r}
+both_na(x,y)
+```
+
+```{r}
+both_na(x, c(NA ,3 ,NA ,2 , NA))
+```
+ # plugged in different inputs
+
+test, tet, test
+
+```{r}
+x <- c(NA, NA, NA)
+y1 <- c( 1, NA, NA)
+y2 <- c( 1, NA, NA, NA)
+```
+
+
+```{r}
+both_na(x,y2)
+```
+ #What happen? we were expecting 2 so?
+ 
+```{r}
+y3 <- c(1, NA, NA,NA, NA,NA,NA)
+both_na(x, y3)
+```
+ 
+ #now we got 6 what happen? takes the missing part on x to match y2 then makes it a number (recycles) to make it the same lenght
+
+
+ 
+```{r}
+3==3
+```
+ 
+```{r}
+3>2
+```
+```{r}
+3<2
+```
+```{r}
+3!=2
+```
+##```{r}
+lenght(y2)
+```
+
+Now lets try the both_na2() function on different lenght input vector
+
+##```{r}
+both_na2(x,y2)
+```
+#should get an error messege
+
+
+```{r}
+x
+```
+```{r}
+which(c(F, F,T,F))
+```
+ #which ( is.na(c( 1, 3,NA,4)))
+
+
+```{r}
+which ( c( FALSE, FALSE,TRUE,FALSE, FALSE))
+```
+
+```{r}
+x <-c(1,2,NA,3,NA)
+y<- c(NA, 3, NA, 3 ,4)
+both_na3(x,y)
+```
+## Internsect function
+
+```{r}
+df1
+```
+
+```{r}
+df2
+```
+
+##simplify to vectors 
+
+```{r}
+x<- df1$IDs
+y<- df2$IDs
+
+
+x
+y
+```
+
+#Next-function intersection of two vectors
+
+```{r}
+intersect(x, y)
+```
+
+```{r}
+x %in% y
+```
+
+```{r}
+which(x %in% y)
+```
+
+```{r}
+
+```
+
+```{r}
+(x %in% y)
+```
+
+##working snippet combine cbind()
+
+```{r}
+cbind( x[x %in% y],
+       y[y %in% x])
+```
+
+#highlight function (snippet) then click code -> extract function= named function gene_intersect
+```{r}
+gene_intersect <- function(x, y) {
+  cbind( x[x %in% y],
+         y[y %in% x])
+}
+```
+
+
+
+```{r}
+gene_intersect(df1$IDs, df2$IDs)
+```
+```{r}
+gene_intersect2(df1,df2)
+```
+
+# Next step: Add df1[,gene.colname] etc to function.
+
+```{r}
+gene_intersect3(df1, df2)
+```
+
+# Additional features we could add
+# - Catch and stop when user inputs weird things
+# - Use different colnames for matching in df1 and df2,
+# - Match based on the content of multiple columns,
+# - Optionally return rows not in df1 or not in df2 with NAs
+# - Optionally sort results by matching column
+
+```{r}
+merge(df1,df2, by= "IDs")
+```
+
+#sample calculate the mean of the students grades 
+c(100,100,100,100,100,100,100,90)
+c(100,90,90,90,90,90,97,80)
+
+#naming
+studnet1 <-c(100,100,100,100,100,100,100,90)
+student2 <-cc(100,100,100,100,100,100,100,90)
+
+```{r}
+s1 <-c(100,100,100,100,100,100,100,90)
+s2 <-c(100,100,100,100,100,100,100,90)
+```
+ #calculate the average grade dropping the lowest
+
+```{r}
+min(s1)
+```
+```{r}
+(sum(s1)-min(s1))/7
+```
+
+```{r}
+(sum(s1)-min(s1))/(length(s1)-1)
+```
+#made a function using s1 results
+```{r}
+grade <- function (s1) {
+(sum(s1)-min(s1))/(length(s1)-1)
+}
+```
+
+
+#student 2 (s2)
+```{r}
+grade(s2)
+```
+
