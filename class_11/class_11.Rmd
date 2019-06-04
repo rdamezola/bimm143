@@ -84,9 +84,9 @@ pdb$atom$elety[1:2]
 ```
 
 
-```{r}
-plot.bio3d(pdb$atom$b[pdb$calpha], sse=pdb, typ="l", ylab=“B-factor”)
-```
+#```{r}
+#plot.bio3d(pdb$atom$b[pdb$calpha], sse=pdb, typ="l", ylab=“B-factor”)
+#```
 
 ```{r}
 pdb$xyz
