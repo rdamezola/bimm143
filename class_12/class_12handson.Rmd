@@ -53,6 +53,6 @@ rmsd(ori, res)
 ```{r}
 pdb <- read.pdb("1hel")
 modes <- nma( pdb )
-m7 <- mktrj(modes, mode=7, file="mode_7.pdb")vm
+#m7 <- mktrj(modes, mode=7, file="mode_7.pdb")vm
 ```
 
