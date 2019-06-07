@@ -24,7 +24,7 @@ This is my classwork from [BIMM143- Introduction to Bioinformatics Spring 2019] 
  
 -Class14: [Biological network analysis](https://github.com/rdamezola/bimm143/blob/master/class_17/class_17.Rmd)
  
--Class15: [cancer genomics](https://github.com/rdamezola/bimm143/blob/master/class_18/class_18_test.Rmd)
+-Class15: [Cancer genomics](https://github.com/rdamezola/bimm143/blob/master/class_18/class_18_test.Rmd)
 
 
 *class sessions were changed in order to match order*
