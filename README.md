@@ -20,7 +20,7 @@ This is my classwork from [BIMM143- Introduction to Bioinformatics Spring 2019] 
 
 -Class13: [Genome annotation and interpretation of gene list](https://github.com/rdamezola/bimm143/blob/master/class_15/class_15.Rmd)
  
--Class14: [Biological network analysis] (https://github.com/rdamezola/bimm143/blob/master/class_17/class_17.Rmd)
+-Class14: [Biological network analysis](https://github.com/rdamezola/bimm143/blob/master/class_17/class_17.Rmd)
  
 -Class15: [cancer genomics](https://github.com/rdamezola/bimm143/blob/master/class_18/class_18_test.Rmd)
 
